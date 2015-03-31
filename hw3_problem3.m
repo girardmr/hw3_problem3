@@ -84,8 +84,8 @@ data_blackman = delayed_channel.*apod_blackman;
 summed_channels_bl = sum(data_blackman,2);
 log_compressed_bl = 20*log10(abs(hilbert(summed_channels_bl(:,:))));
 figure;
-imagesc(log_compressed_bl,[-50 0]);
-axis image;
+imagesc(log_compressed_bl);
+%axis image;
 colormap('gray');
 title('Without aperture growth');
 
@@ -97,8 +97,8 @@ data_blackman_g = delayed_channel.*apod_blackman_g;
 summed_channels_bl_g = sum(data_blackman_g,2);
 log_compressed_bl_g = 20*log10(abs(hilbert(summed_channels_bl_g(:,:))));
 figure;
-imagesc(log_compressed_bl_g,[-50 0]);
-axis image;
+imagesc(log_compressed_bl_g);
+%axis image;
 colormap('gray');
 title('Aperture growth');
 

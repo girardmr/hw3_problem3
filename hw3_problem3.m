@@ -32,6 +32,7 @@ data_matrix = data;
 
 for ii = 1:(length(channel))
     xe(ii) = 0.1953e-3*abs(channel(ii)); 
+    lateral_array(ii) = 0.1953e-3*channel(ii);
     d(ii) = (xe(ii)^2+depth^2)^0.5 + depth;
     time_to_point(ii) = d(ii)/speed;
 end
@@ -46,9 +47,7 @@ end
 
 
 end
-lateral_array = xe;
 axial_array = [1:rows_data_matrix]*pixel_size_through_depth;
-axial_array = axial_array';
 
 for ll = 1:numel(delayed_channel)
     if isnan(delayed_channel(ll))==1
@@ -87,7 +86,7 @@ data_blackman = delayed_channel.*apod_blackman;
 summed_channels_bl = sum(data_blackman,2);
 log_compressed_bl = 20*log10(abs(hilbert(summed_channels_bl(:,:))));
 figure;
-imagesc(lateral_array, axial_array, log_compressed_bl);
+imagesc(lateral_array, axial_array, log_compressed_bl, [30 80]);
 axis image;
 colormap('gray');
 title('Without aperture growth');
@@ -100,7 +99,7 @@ data_blackman_g = delayed_channel.*apod_blackman_g;
 summed_channels_bl_g = sum(data_blackman_g,2);
 log_compressed_bl_g = 20*log10(abs(hilbert(summed_channels_bl_g(:,:))));
 figure;
-imagesc(lateral_array, axial_array, log_compressed_bl_g);
+imagesc(lateral_array, axial_array, log_compressed_bl_g, [30 80]);
 axis image;
 colormap('gray');
 title('Aperture growth');
